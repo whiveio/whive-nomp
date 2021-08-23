@@ -1,16 +1,9 @@
 node-base: &node-base
   steps:
     - checkout
-    - restore_cache:
-        keys:
-          - v1-npm-deps-{{ checksum "package-lock.json" }}
-          - v1-npm-deps-
+
     - run: npm install
     - run: npm test
-    - save_cache:
-        key: v1-npm-deps-{{ checksum "package-lock.json" }}
-        paths:
-          - node_modules
 
 version: 2.1
 jobs:
